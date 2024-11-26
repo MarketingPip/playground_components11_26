@@ -339,7 +339,7 @@ function createEditModal({ title = 'Edit Item', onSave, onCancel, fields = [], s
     const input = type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
     input.id = id;
     input.name = id;
-    input.type = type;
+    //input.type = type;
     input.value = value;
     input.classList.add('mt-1', 'p-2', 'border', 'rounded-md', 'w-full');
     if (required) {
@@ -462,7 +462,7 @@ export function BioModal(bioItems = []){
 const bioPanel = new BioPanel({ title: 'Memories', onClose:function(){
   
   bioPanel.cleanup()
-  
+  customComponent.cleanup()
 } });
 
 if(bioItems.length === 0){
