@@ -333,6 +333,9 @@ function createEditModal({ title = 'Edit Item', onSave, onCancel, fields = [], s
     labelElement.classList.add('block', 'text-sm', 'font-medium', 'text-gray-600');
     labelElement.textContent = label;
 
+
+    console.log(type)
+    
     const input = type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
     input.id = id;
     input.name = id;
