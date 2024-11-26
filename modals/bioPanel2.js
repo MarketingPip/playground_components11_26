@@ -1,4 +1,4 @@
-class BioPanel {
+export class BioPanel {
   constructor(config = {}) {
     this.config = {
       title: "Previous Output(s)",
@@ -545,6 +545,3 @@ bioPanel.appendComponent(customComponent.component);
 }
 
 // Open modal programmatically
-
-
-export BioModal
