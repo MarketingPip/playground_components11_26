@@ -1,4 +1,4 @@
-export class BioPanel {
+class BioPanel {
   constructor(config = {}) {
     this.config = {
       title: "Previous Output(s)",
@@ -453,11 +453,11 @@ function createEditModal({ title = 'Edit Item', onSave, onCancel, fields = [], s
 
 
 
-function BioModal(){
+export function BioModal(){
   
 
 
-const bioPanel = new BioPanel({ title: 'My Output Panel', onClose:function(){
+const bioPanel = new BioPanel({ title: 'Memories', onClose:function(){
   
   bioPanel.cleanup()
   
