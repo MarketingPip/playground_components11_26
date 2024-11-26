@@ -257,8 +257,7 @@ function createNoMemoriesMessage() {
 }
 
 
-
-let bioItems =  []
+ 
 
 
 function createEditModal({ title = 'Edit Item', onSave, onCancel, fields = [], showModal = false }) {
@@ -453,7 +452,7 @@ function createEditModal({ title = 'Edit Item', onSave, onCancel, fields = [], s
 
 
 
-export function BioModal(){
+export function BioModal(bioItems = []){
   
 
 
