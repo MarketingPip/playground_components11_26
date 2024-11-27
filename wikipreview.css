@@ -1,0 +1,966 @@
+.wikipediapreview {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  background-color: var(--wikipediapreview-primary-background-color);
+  box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+}
+.wikipediapreview * {
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.wikipediapreview *::-webkit-scrollbar {
+  display: none;
+}
+.wikipediapreview-header {
+  display: flex;
+  min-height: 64px;
+  line-height: 62px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.wikipediapreview-header-image {
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #eaecf0;
+  height: 64px;
+  width: 64px;
+  border-radius: 4px;
+  border: solid 1px #eaecf0;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.wikipediapreview-header-wordmark {
+  background-image: url(https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg );
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 160px;
+  flex-grow: 1;
+  margin-left: 16px;
+  filter: var(--wikipediapreview-filter-setting);
+}
+.wikipediapreview-header-wordmark-ar {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ar.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-atj {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-atj.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-bn {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-bn.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-ca {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ca.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-cs {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-cs.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-cy {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-cy.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-et {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-et.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-fa {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-fa.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-fr {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-fr.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-he {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-he.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-hi {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-hi.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-ja {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ja.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-la {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-la.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-ps {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ps.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-ru {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ru.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-sd {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-sd.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-sr {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-sr.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-szl {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-szl.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-tr {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-tr.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-ur {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-ur.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-uz {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-uz.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-zh {
+  background-image: url('https://wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-zh.svg');
+  background-size: unset;
+}
+.wikipediapreview-header-wordmark-sr,
+.wikipediapreview-header-wordmark-fr {
+  background-size: 160px;
+}
+.wikipediapreview-header-wordmark-he,
+.wikipediapreview-header-wordmark-sd,
+.wikipediapreview-header-wordmark-zh {
+  background-size: 120px;
+}
+.wikipediapreview-header-closebtn {
+  display: none;
+  background-image: url('../images/close.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  align-self: center;
+  height: 50px;
+  width: 50px;
+  filter: var(--wikipediapreview-filter-setting);
+}
+.wikipediapreview-header-no-thumb {
+  min-height: 52px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.wikipediapreview-body {
+  max-height: 220px;
+  overflow: scroll;
+  margin-bottom: 16px;
+  position: relative;
+}
+.wikipediapreview-body p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 0 20px;
+  color: var(--wikipediapreview-primary-color);
+}
+.wikipediapreview-body ul {
+  padding-left: 35px;
+  padding-right: 20px;
+  line-height: 1.6;
+  color: var(--wikipediapreview-primary-color);
+}
+.wikipediapreview-body-message {
+  display: flex;
+  margin-left: 23px;
+  margin-right: 23px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--wikipediapreview-primary-color);
+}
+.wikipediapreview-body-icon {
+  display: absolute;
+  vertical-align: middle;
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+.wikipediapreview-body-action {
+  margin-left: 55px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.wikipediapreview-body-action a {
+  color: #36c;
+}
+.wikipediapreview-body.wikipediapreview-body-error .wikipediapreview-body-icon {
+  content: url('../images/error-preview.svg');
+}
+.wikipediapreview-body.wikipediapreview-body-disambiguation .wikipediapreview-body-icon {
+  content: url('../images/articles.svg');
+}
+.wikipediapreview-body.wikipediapreview-body-offline .wikipediapreview-body-message {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.wikipediapreview-body.wikipediapreview-body-offline .wikipediapreview-body-icon {
+  content: url('../images/offline-icon.svg');
+}
+.wikipediapreview-body.wikipediapreview-body-offline .wikipediapreview-body-action {
+  margin: 12px 49px;
+}
+.wikipediapreview-body.wikipediapreview-body-loading {
+  padding: 10px 20px;
+}
+.wikipediapreview-body.wikipediapreview-body-loading:after {
+  content: none;
+}
+.wikipediapreview-body.wikipediapreview-body-loading .wikipediapreview-body-loading-line {
+  height: 10px;
+  margin-top: 12px;
+  border-radius: 1px;
+  background: linear-gradient(to right, #ebe9e9, #d6d3d3, #eaecf0);
+  background-size: 200% 200%;
+  -webkit-animation: animate-load 2s ease infinite;
+  -moz-animation: animate-load 2s ease infinite;
+  animation: animate-load 2s ease infinite;
+}
+.wikipediapreview-body.wikipediapreview-body-loading .wikipediapreview-body-loading-line.larger {
+  width: 100%;
+}
+.wikipediapreview-body.wikipediapreview-body-loading .wikipediapreview-body-loading-line.medium {
+  width: 80%;
+}
+.wikipediapreview-body.wikipediapreview-body-loading .wikipediapreview-body-loading-line.smaller {
+  width: 60%;
+}
+@-webkit-keyframes animate-load {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+@-moz-keyframes animate-load {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+@keyframes animate-load {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+.wikipediapreview-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  z-index: 5;
+}
+.wikipediapreview-footer-link {
+  margin-right: 5px;
+}
+.wikipediapreview-footer-link-cta {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--wikipediapreview-cta-color);
+  margin-right: 4px;
+}
+.wikipediapreview-footer-link-cta:hover {
+  text-decoration: underline;
+}
+.wikipediapreview-footer-link-cta svg path {
+  fill: currentColor;
+}
+.wikipediapreview-footer-link-cta:visited {
+  color: var(--wikipediapreview-cta-visited-color);
+}
+.wikipediapreview-footer-loading {
+  height: 30px;
+  background-color: var(--wikipediapreview-secondary-background-color);
+}
+.wikipediapreview-scroll-cue {
+  position: absolute;
+  width: 350px;
+  height: 70px;
+  bottom: 0;
+  pointer-events: none;
+  background: -moz-linear-gradient(top, transparent 0%, var(--wikipediapreview-primary-background-color) 100%);
+  background: -webkit-linear-gradient(top, transparent 0%, var(--wikipediapreview-primary-background-color) 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--wikipediapreview-primary-background-color) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
+}
+.wikipediapreview.mobile {
+  width: 100%;
+  max-height: 55vh;
+}
+.wikipediapreview.mobile .wikipediapreview-header-closebtn {
+  display: block;
+}
+.wikipediapreview.mobile .wikipediapreview-body {
+  max-height: 55vh;
+}
+.wikipediapreview.mobile .wikipediapreview-scroll-cue {
+  width: 100%;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-header-wordmark {
+  background-position: right;
+  margin-right: 16px;
+  margin-left: 0;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-header-image {
+  margin-right: 20px;
+  margin-left: 0;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-body-icon {
+  margin-right: 0;
+  margin-left: 12px;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-body-action {
+  margin-left: 0;
+  margin-right: 55px;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-footer-cc {
+  left: 30px;
+  right: auto;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-footer-author {
+  left: 14px;
+  right: auto;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-footer-link {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.wikipediapreview-body-non-regular,
+.wikipediapreview-body.wikipediapreview-body-error,
+.wikipediapreview-body.wikipediapreview-body-disambiguation,
+.wikipediapreview-body.wikipediapreview-body-offline,
+.wikipediapreview-body.wikipediapreview-body-loading {
+  height: 240px;
+  max-height: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (prefers-color-scheme: dark) {
+  .wikipediapreview,
+  .wp-popup-arrow {
+    --wikipediapreview-primary-background-color: #202122;
+    --wikipediapreview-secondary-background-color: #202122;
+    --wikipediapreview-primary-color: #eaecf0;
+    --wikipediapreview-filter-setting: invert(1);
+    --wikipediapreview-cta-color: #6D8AF2;
+    --wikipediapreview-cta-visited-color: #977DBD;
+  }
+}
+@media (prefers-color-scheme: light) {
+  .wikipediapreview,
+  .wp-popup-arrow {
+    --wikipediapreview-primary-background-color: #fff;
+    --wikipediapreview-secondary-background-color: #eaecf0;
+    --wikipediapreview-primary-color: #202122;
+    --wikipediapreview-filter-setting: unset;
+    --wikipediapreview-cta-color: #36c;
+    --wikipediapreview-cta-visited-color: #6B4BA1;
+  }
+}
+.wikipediapreview.wikipediapreview-dark-theme,
+.wikipediapreview.wikipediapreview-dark-theme + .wp-popup-arrow {
+  --wikipediapreview-primary-background-color: #202122;
+  --wikipediapreview-secondary-background-color: #202122;
+  --wikipediapreview-primary-color: #eaecf0;
+  --wikipediapreview-filter-setting: invert(1);
+  --wikipediapreview-cta-color: #6D8AF2;
+  --wikipediapreview-cta-visited-color: #977DBD;
+}
+.wikipediapreview.wikipediapreview-light-theme,
+.wikipediapreview.wikipediapreview-light-theme + .wp-popup-arrow {
+  --wikipediapreview-primary-background-color: #fff;
+  --wikipediapreview-secondary-background-color: #eaecf0;
+  --wikipediapreview-primary-color: #202122;
+  --wikipediapreview-filter-setting: unset;
+  --wikipediapreview-cta-color: #36c;
+  --wikipediapreview-cta-visited-color: #6B4BA1;
+}
+.wikipediapreview + .wp-popup-arrow {
+  background-color: var(--wikipediapreview-primary-background-color);
+}
+.wikipediapreview-gallery {
+  display: flex;
+  min-height: 100px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 8px;
+  z-index: 5;
+  position: relative;
+}
+.wikipediapreview-gallery-row {
+  display: flex;
+  overflow: auto;
+}
+.wikipediapreview-gallery-image {
+  height: 100%;
+  min-width: 100px;
+  background-size: cover;
+  background-position: center;
+  background-color: #eaecf0;
+  border-radius: 2px;
+  margin: 0 4px 0 4px;
+  cursor: pointer;
+}
+.wikipediapreview-gallery-image:first-child {
+  margin-left: 0;
+}
+.wikipediapreview[dir='rtl'] .wikipediapreview-gallery-image:first-child {
+  margin-right: 0;
+  margin-left: 4px;
+}
+.wp-gallery-fullscreen {
+  background-color: var(--gallery-primary-background-color);
+  z-index: 1100;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+  scrollbar-width: none;
+}
+.wp-gallery-fullscreen-close {
+  position: absolute;
+  cursor: pointer;
+  background-image: url('../images/close.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 48px;
+  right: 24px;
+  top: 16px;
+  height: 48px;
+  z-index: 1120;
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen-close {
+    right: 4px;
+  }
+}
+.wp-gallery-fullscreen-main {
+  display: flex;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.wp-gallery-fullscreen-counter {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: var(--gallery-primary-text-color);
+  font-size: 16px;
+  letter-spacing: 0.105em;
+  font-weight: 400;
+  z-index: 1120;
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen-counter {
+    font-size: 14px;
+  }
+}
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .wp-gallery-fullscreen-counter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(32, 33, 34, 0.8);
+    margin: 16px auto;
+    padding: 6px;
+    color: #fff;
+    border-radius: 8px;
+  }
+}
+.wp-gallery-fullscreen-slider {
+  display: flex;
+  transition: margin-left 0.25s ease-in-out;
+  flex-wrap: wrap;
+  flex: 1 0 auto;
+  touch-action: none;
+}
+.wp-gallery-fullscreen-slider-item {
+  position: relative;
+  width: calc(100vw);
+  height: calc(100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.wp-gallery-fullscreen-slider-item-img {
+  transition: transform 0.35s ease-in-out;
+  max-width: calc(100% - 176px);
+  text-align: center;
+}
+.wp-gallery-fullscreen-slider-item-img img {
+  background-color: #fff;
+  position: relative;
+  max-width: 100%;
+  max-height: 80vh;
+}
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .wp-gallery-fullscreen-slider-item-img img {
+    max-height: 90vh;
+    margin-top: -10vh;
+  }
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen-slider-item-img {
+    max-width: 100%;
+  }
+}
+.wp-gallery-fullscreen-slider-item-caption {
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.56;
+  color: var(--gallery-secondary-text-color);
+  max-height: 120px;
+  overflow-y: auto;
+  touch-action: none;
+  scrollbar-width: none;
+  visibility: hidden;
+}
+.wp-gallery-fullscreen-slider-item-caption::-webkit-scrollbar {
+  display: none;
+}
+.wp-gallery-fullscreen-slider-item-caption-expand-cue {
+  visibility: hidden;
+}
+.wp-gallery-fullscreen-slider-item-caption-text {
+  overflow-y: auto;
+  transition: max-height 0.25s ease-in-out;
+  touch-action: none;
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen-slider-item-caption {
+    position: absolute;
+    visibility: unset;
+    text-align: left;
+    max-width: calc(100% - 32px);
+    background-color: rgba(248, 249, 250, 0.9);
+    left: 0;
+    padding: 0 16px;
+    bottom: 40px;
+  }
+  .wp-gallery-fullscreen-slider-item-caption-expand-cue {
+    width: 37px;
+    height: 3px;
+    visibility: unset;
+    background-image: url('../images/caption-cue-light.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin: auto;
+    margin-top: 10px;
+    padding-bottom: 4px;
+    transition: height 0.25s ease-in-out;
+  }
+  .wp-gallery-fullscreen-slider-item-caption-expand-cue.expanded {
+    background-image: url('../images/caption-cue-expanded-light.svg');
+    height: 8px;
+  }
+}
+.wp-gallery-fullscreen-slider-item-attribution {
+  position: absolute;
+  background-color: var(--gallery-primary-background-color);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+  color: var(--gallery-primary-background-color);
+  border: var(--gallery-primary-background-color);
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+}
+.wp-gallery-fullscreen-slider-item-attribution::-webkit-scrollbar {
+  display: none;
+}
+.wp-gallery-fullscreen-slider-item-attribution-info {
+  display: flex;
+  align-items: center;
+  margin: 16px;
+  font-size: 12px;
+  color: var(--gallery-primary-text-color);
+}
+.wp-gallery-fullscreen-slider-item-attribution-info-author {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  scrollbar-width: none;
+  max-width: 60vw;
+}
+.wp-gallery-fullscreen-slider-item-attribution-info-link {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  padding-left: 5px;
+  z-index: 1120;
+  cursor: pointer;
+}
+.wp-gallery-fullscreen-slider-item-attribution-info-link svg {
+  fill: currentColor;
+  padding-left: 5px;
+  pointer-events: none;
+}
+.wp-gallery-fullscreen-slider-item-loading {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.wp-gallery-fullscreen-slider-item-loading-icons {
+  margin-left: 116px;
+}
+.wp-gallery-fullscreen-slider-item-loading-text {
+  visibility: hidden;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--gallery-primary-background-color);
+}
+.wp-gallery-fullscreen-slider-item-loading-error {
+  top: calc(50% - 80px);
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  background-image: url('../images/error.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+}
+.wp-gallery-fullscreen-slider-item-loading-error-text {
+  padding-top: 85px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--gallery-primary-background-color);
+}
+.wp-gallery-fullscreen-slider-item-loading-error-refresh {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #36c;
+}
+.wp-gallery-fullscreen-slider-item-loading-error.offline {
+  background-image: url('../images/offline-icon-white.svg');
+}
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation {
+  width: 70px;
+  opacity: 0.8;
+  display: inline-block;
+  white-space: nowrap;
+}
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation .wp-gallery-fullscreen-slider-item-loading-spinner-animation-bounce,
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation:before,
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation:after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #c8ccd1;
+  border-radius: 100%;
+  -webkit-animation: bounce 1.4s infinite ease-in-out;
+  animation: bounce 1.4s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation:before {
+  -webkit-animation-delay: -0.33s;
+  animation-delay: -0.33s;
+}
+.wp-gallery-fullscreen-slider-item-loading-spinner-animation:after {
+  -webkit-animation-delay: -0.01s;
+  animation-delay: -0.01s;
+}
+@-webkit-keyframes bounce {
+  0%,
+  100%,
+  80% {
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    background-color: #bbb;
+  }
+}
+@keyframes bounce {
+  0%,
+  100%,
+  80% {
+    -webkit-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.wp-gallery-fullscreen-slider-button {
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  width: 48px;
+  height: 100%;
+  color: #72777d;
+  position: absolute;
+  z-index: 1100;
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen-slider-button {
+    display: none;
+  }
+}
+.wp-gallery-fullscreen-slider-button.previous {
+  background-image: url('../images/arrow-left.svg');
+  left: 24px;
+}
+.wp-gallery-fullscreen-slider-button.next {
+  background-image: url('../images/arrow-right.svg');
+  right: 24px;
+}
+.wp-gallery-fullscreen-bottom {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wp-gallery-fullscreen-loading {
+  position: absolute;
+  height: 112px;
+  width: 270px;
+}
+.wp-gallery-fullscreen-loading-icons {
+  margin-left: 116px;
+}
+.wp-gallery-fullscreen-loading-text {
+  position: absolute;
+  bottom: 10px;
+  left: -8px;
+  width: 292px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--gallery-primary-background-color);
+}
+.wp-gallery-fullscreen-loading-error {
+  background-image: url('../images/error.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 45px;
+  left: 125px;
+}
+.wp-gallery-fullscreen-loading-error-refresh {
+  position: absolute;
+  bottom: -20px;
+  left: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #36c;
+}
+.wp-gallery-fullscreen-loading-spinner-animation {
+  margin: 50px auto 0;
+  width: 70px;
+  opacity: 0.8;
+  display: inline-block;
+  white-space: nowrap;
+}
+.wp-gallery-fullscreen-loading-spinner-animation .wp-gallery-fullscreen-loading-spinner-animation-bounce,
+.wp-gallery-fullscreen-loading-spinner-animation:before,
+.wp-gallery-fullscreen-loading-spinner-animation:after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #c8ccd1;
+  border-radius: 100%;
+  -webkit-animation: bounce 1.4s infinite ease-in-out;
+  animation: bounce 1.4s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.wp-gallery-fullscreen-loading-spinner-animation:before {
+  -webkit-animation-delay: -0.33s;
+  animation-delay: -0.33s;
+}
+.wp-gallery-fullscreen-loading-spinner-animation:after {
+  -webkit-animation-delay: -0.01s;
+  animation-delay: -0.01s;
+}
+@-webkit-keyframes bounce {
+  0%,
+  100%,
+  80% {
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    background-color: #bbb;
+  }
+}
+@keyframes bounce {
+  0%,
+  100%,
+  80% {
+    -webkit-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.wp-gallery-fullscreen-focus-mode .wp-gallery-fullscreen-close,
+.wp-gallery-fullscreen-focus-mode .wp-gallery-fullscreen-counter,
+.wp-gallery-fullscreen-focus-mode .wp-gallery-fullscreen-slider-button,
+.wp-gallery-fullscreen-focus-mode .wp-gallery-fullscreen-slider-item-caption,
+.wp-gallery-fullscreen-focus-mode .wp-gallery-fullscreen-slider-item-attribution {
+  visibility: hidden !important;
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-close {
+  right: auto;
+  left: 24px;
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-slider {
+  transition: margin-right 0.25s ease-in-out;
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-slider-button.previous {
+  background-image: url('../images/arrow-right.svg');
+  left: auto;
+  right: 24px;
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-slider-button.next {
+  background-image: url('../images/arrow-left.svg');
+  left: 24px;
+  right: auto;
+}
+@media screen and (max-width: 1120px) {
+  .wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-slider-item-caption {
+    right: 29px;
+    text-align: right;
+  }
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-slider-item-attribution {
+  padding-left: 0;
+  padding-right: 20px;
+}
+.wp-gallery-fullscreen[dir='rtl'] .wp-gallery-fullscreen-loading-icons {
+  margin-left: 0;
+  margin-right: 116px;
+}
+@media (prefers-color-scheme: dark) {
+  .wp-gallery-fullscreen {
+    --gallery-primary-background-color: #202122;
+    --gallery-primary-text-color: #DADDE3;
+    --gallery-secondary-text-color: #F8F9FA;
+  }
+  .wp-gallery-fullscreen-close {
+    background-image: url('../images/close-white.svg');
+  }
+  .wp-gallery-fullscreen-slider-item-caption {
+    background-color: rgba(32, 33, 34, 0.6);
+  }
+  .wp-gallery-fullscreen-slider-button.previous {
+    background-image: url('../images/arrow-left-dark.svg');
+  }
+  .wp-gallery-fullscreen-slider-button.next {
+    background-image: url('../images/arrow-right-dark.svg');
+  }
+}
+@media (prefers-color-scheme: dark) and (max-width: 1120px) {
+  .wp-gallery-fullscreen-slider-item-caption-expand-cue {
+    background-image: url('../images/caption-cue.svg');
+  }
+  .wp-gallery-fullscreen-slider-item-caption-expand-cue.expanded {
+    background-image: url('../images/caption-cue-expanded.svg');
+  }
+}
+@media (prefers-color-scheme: light) {
+  .wp-gallery-fullscreen {
+    --gallery-primary-background-color: #F8F9FA;
+    --gallery-primary-text-color: #54595D;
+    --gallery-secondary-text-color: #202122;
+  }
+}
+.wp-popup,
+.wp-touch-popup {
+  box-sizing: border-box;
+  padding: 0;
+  box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  z-index: 1100;
+  position: absolute;
+}
+.wp-popup-arrow {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  clip-path: polygon(50% 0%, 50% 0%, 100% 50%, 0% 50%);
+}
+.wp-touch-popup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+@media (orientation: landscape) {
+  .wp-touch-popup {
+    margin: 0 106px;
+  }
+}
+.wp-dark-screen {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1090;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
