@@ -31,9 +31,9 @@ export async function showNotification(type = 'info', title = '', message = '') 
   // Function to handle animation end
   const handleAnimationEnd = () => {
     container.removeChild(notification);
-    notification.removeEventListener('animationend', handleAnimationEnd); // Remove event listener after it fires
+    notification.removeEventListener('animation', handleAnimationEnd); // Remove event listener after it fires
   };
 
   // Add a listener for the animationend event
-  notification.addEventListener('animationend', handleAnimationEnd);
+  notification.addEventListener('animation', handleAnimationEnd);
 }
