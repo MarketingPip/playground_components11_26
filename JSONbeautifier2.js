@@ -9,7 +9,14 @@ export function parseJsonString(jsonString) {
   }
 
   // Next, try parsing with JSON5
-  let result = attemptParse(jsonString, JSON5.parse);
+  let result = null;
+  
+    if(isValidJsonObject(jsonString)){
+     result = attemptParse(JSON.stringify(jsonString), JSON5.parse);
+    }else{
+     result = attemptParse(jsonString, JSON5.parse);
+    }
+  
   if (result !== undefined) return result;
 
   // Finally, if it looks like a JavaScript object or array, try deserialize
