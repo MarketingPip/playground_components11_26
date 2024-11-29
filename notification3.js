@@ -28,12 +28,15 @@ export async function showNotification(type = 'info', title = '', message = '') 
   fragment.appendChild(notification);
   container.appendChild(fragment);
 
+  // Add fade-out class to item container for animation
+  notification.classList.add('fade-out');
+  
   // Function to handle animation end
   const handleAnimationEnd = () => {
     container.removeChild(notification);
-    notification.removeEventListener('animation', handleAnimationEnd); // Remove event listener after it fires
+    notification.removeEventListener('animationend', handleAnimationEnd); // Remove event listener after it fires
   };
 
   // Add a listener for the animationend event
-  notification.addEventListener('animation', handleAnimationEnd);
+  notification.addEventListener('animationend', handleAnimationEnd);
 }
