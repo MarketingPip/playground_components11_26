@@ -1,4 +1,4 @@
-export async function showNotification(type = 'info', title = '', message = '', seconds=5) {
+export async function showNotification(type = 'info', title = '', message = '', seconds=10) {
   const container = document.getElementById('notification-container');
   if (!container) {
     console.error('Notification container not found!');
