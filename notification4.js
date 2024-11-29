@@ -1,4 +1,4 @@
-export async function showNotification(type = 'info', title = '', message = '') {
+export async function showNotification(type = 'info', title = '', message = '', seconds=5) {
   const container = document.getElementById('notification-container');
   if (!container) {
     console.error('Notification container not found!');
@@ -29,7 +29,7 @@ export async function showNotification(type = 'info', title = '', message = '') 
   container.appendChild(fragment);
 
   // Add fade-out class to item container for animation
-  notification.classList.add('fade-out');
+  notification.style.animation = `fadeOut ${seconds}s ease-out forwards`; // Set animation dynamically
   
   // Function to handle animation end
   const handleAnimationEnd = () => {
