@@ -3,7 +3,7 @@ import * as d3 from "https://esm.sh/d3";
 import * as markmap from "https://esm.sh/markmap-lib";
 import { Markmap, loadCSS, loadJS } from "https://esm.sh/markmap-view";
 // Function to render the Markmap
-function renderMarkmap(markdown, opts = { duration: 0 }) {
+function renderMarkmap(markdown, opts = { duration: 0 }, id) {
   const { Transformer } = markmap;
 
   const transformer = new Transformer();
@@ -21,5 +21,5 @@ function renderMarkmap(markdown, opts = { duration: 0 }) {
   }
 
   // Create the mindmap
-  return Markmap.create("#markmap", opts, root);
+  return Markmap.create(id, opts, root);
 }
