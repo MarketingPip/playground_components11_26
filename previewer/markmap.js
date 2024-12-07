@@ -23,3 +23,4 @@ function renderMarkmap(markdown, opts = { duration: 0 }, id) {
   // Create the mindmap
   return Markmap.create(id, opts, root);
 }
+export default renderMarkmap
