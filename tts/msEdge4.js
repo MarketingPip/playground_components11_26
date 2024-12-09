@@ -19,7 +19,7 @@ async function getVoices() {
             voice.id = voice.ShortName;
             voice.ms = true;
             voice.name = voice.ShortName; // .replace(/.*-(\w+)Neural$/, '$1'); 
-            results[voice.FriendlyName.replace("Online (Natural) ", "").replace("Microsoft", "").trim()] =  value:voice.id 
+            results[voice.FriendlyName.replace("Online (Natural) ", "").replace("Microsoft", "").trim()] =  voice.id 
         }
       return results
     } catch (error) {
