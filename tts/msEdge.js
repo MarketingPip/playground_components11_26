@@ -1,6 +1,98 @@
-tf-8").decode(data);
+const OUTPUT_FORMAT = {
+    RAW_16KHZ_16BIT_MONO_PCM: "raw-16khz-16bit-mono-pcm",
+    RAW_24KHZ_16BIT_MONO_PCM: "raw-24khz-16bit-mono-pcm",
+    // ... (other enum values)
+    OGG_48KHZ_16BIT_MONO_OPUS: "ogg-48khz-16bit-mono-opus",
+    default: "audio-24khz-48kbitrate-mono-mp3",
+};
+
+
+fetch(`https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list?trustedclienttoken=6A5AA1D4EAFF4E9FB37E23D68491D6F4`).then(a => a.json()).then(json => {
+    for (let voice of json) {
+        if (voice.ShortName.startsWith("en-TZ")||voice.ShortName.startsWith("en-NZ")) continue;
+        
+        voice.id = voice.ShortName;
+        voice.ms=true;
+        voice.name = voice.ShortName;//.replace(/.*-(\w+)Neural$/, '$1');        
+        Vue.set(bs.settings.voice.options, voice.name, voice);
+    }
+    globalThis.OnVoicesChanged?.();
+});
+
+
+class MsEdgeTTS {
+    static SYNTH_URL = `wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4`;
+    static OUTPUT_FORMAT = OUTPUT_FORMAT;
+    static VOICE_LANG_REGEX = /\w{2}-\w{2}/;
+
+    constructor(enableLogger = true) {
+        this._enableLogger = enableLogger;
+        this._queue = {};
+
+    }
+
+    async _send(message) {
+        if (this._connection?.readyState !== WebSocket.OPEN) {
+            await this._initClient();
+        }
+        this._connection.send(message);
+    }
+
+    _connect() {
+        if (this._enableLogger) this._startTime = Date.now();
+        this._ws = new WebSocket(MsEdgeTTS.SYNTH_URL);
+        return new Promise((resolve) => (this._ws.onopen = resolve));
+    }
+
+    async _initClient() {
+        this._connection = (await this._connect()).target;
+
+
+        if (this._enableLogger) console.log("Connected in", (Date.now() - this._startTime) / 1000, "seconds");
+        let requestId;
+        this._connection.onclose = () => {
+            if (this._enableLogger) console.log("disconnected");
+            try {
+                const controller = this._queue[requestId];
+                controller.close();
+            } catch (e) { }
+        };
+
+        this._connection.onmessage = (event) => {
+            const data = typeof event.data === 'string' ? event.data : new Uint8Array(event.data);
+
+            // Handle text messages
+            if (typeof data === 'string') {
+                requestId = /X-RequestId:(.*?)\r\n/gm.exec(data)[1];
+                // Your existing code for handling text messages...
+                if (data.includes("Path:turn.start")) {
+                    // start of turn, ignore
+                } else if (data.includes("Path:turn.end")) {
+                    // end of turn, close stream
+                    //this._queue[requestId].enqueue(null);
+                    //this._queue[requestId].close();
+                } else if (data.includes("Path:response")) {
+                    // context response, ignore
+                } else {
+                    console.log("UNKNOWN MESSAGE", data);
+                }
+            }
+            // Handle binary messages
+            else if (event.data instanceof Blob) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const data = new Uint8Array(reader.result);
+                    const requestId = /X-RequestId:(.*?)\r\n/gm.exec(new TextDecoder().decode(data))[1];
+                    const controller = this._queue[requestId];
+                    if (data[0] === 0x00 && data[1] === 0x67 && data[2] === 0x58) {
+                        // Last (empty) audio fragment
+                        controller.close();
+                    } else {
+                        let BINARY_DELIM = "Path:audio\r\n";
+                        const dataAsString = new TextDecoder("utf-8").decode(data);
                         const index = dataAsString.indexOf(BINARY_DELIM) + BINARY_DELIM.length;
                         const audioData = data.slice(index);
+                        console.info("AUDIO DATA");
                         controller.enqueue(audioData);
                     }
                 };
@@ -96,6 +188,7 @@ tf-8").decode(data);
         return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
     }
 }
+
 
 // Example usage
 const tts = new MsEdgeTTS();
