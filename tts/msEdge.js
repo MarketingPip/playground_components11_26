@@ -1,4 +1,5 @@
-const OUTPUT_FORMAT = {
+  export function MsEdgeTTS(){
+  const OUTPUT_FORMAT = {
     RAW_16KHZ_16BIT_MONO_PCM: "raw-16khz-16bit-mono-pcm",
     RAW_24KHZ_16BIT_MONO_PCM: "raw-24khz-16bit-mono-pcm",
     // ... (other enum values)
@@ -7,17 +8,25 @@ const OUTPUT_FORMAT = {
 };
 
 
-fetch(`https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list?trustedclienttoken=6A5AA1D4EAFF4E9FB37E23D68491D6F4`).then(a => a.json()).then(json => {
-    for (let voice of json) {
-        if (voice.ShortName.startsWith("en-TZ")||voice.ShortName.startsWith("en-NZ")) continue;
-        
-        voice.id = voice.ShortName;
-        voice.ms=true;
-        voice.name = voice.ShortName;//.replace(/.*-(\w+)Neural$/, '$1');        
-        Vue.set(bs.settings.voice.options, voice.name, voice);
+async function getVoices() {
+    try {
+        const response = await fetch(`https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list?trustedclienttoken=6A5AA1D4EAFF4E9FB37E23D68491D6F4`);
+        const json = await response.json();
+        const results = []
+        for (let voice of json) {
+            if (voice.ShortName.startsWith("en-TZ") || voice.ShortName.startsWith("en-NZ")) continue;
+
+            voice.id = voice.ShortName;
+            voice.ms = true;
+            voice.name = voice.ShortName; // .replace(/.*-(\w+)Neural$/, '$1'); 
+            results.push({name:voice.FriendlyName.replace("Online (Natural) ", "").replace("Microsoft", "").trim(), value:voice.id })
+        }
+      return results
+    } catch (error) {
+        console.error("Error fetching or processing voices:", error);
     }
-    globalThis.OnVoicesChanged?.();
-});
+}
+ 
 
 
 class MsEdgeTTS {
@@ -92,7 +101,7 @@ class MsEdgeTTS {
                         const dataAsString = new TextDecoder("utf-8").decode(data);
                         const index = dataAsString.indexOf(BINARY_DELIM) + BINARY_DELIM.length;
                         const audioData = data.slice(index);
-                        console.info("AUDIO DATA");
+                     
                         controller.enqueue(audioData);
                     }
                 };
@@ -255,17 +264,25 @@ async function streamToAudio(readableStream) {
 }
 
 
-async function synthesizeMsEdge(text = "Hi, how are you?", voice2) {
+async function synthesizeMsEdge(text = null, voice2) {
     let voice = voice2?.id;
-  console.log(voice2)
+ 
     await tts.setMetadata(voice, OUTPUT_FORMAT.default);
     const readable = await tts.toStream(text);
     if (window.MediaSource && !navigator.userAgent.includes('Firefox')) return await streamToAudio(readable);
-    console.log("no audio stream support, fallback");
+    console.log("no aussdio stream support, fallback");
 
     let chunks = await fetchStream(readable);
     return "data:audio/mp3;base64," + await chunks.arrayBuffer().then(buffer => btoa(String.fromCharCode(...new Uint8Array(buffer))));
     //return URL.createObjectURL(chunks);
 
 }
-   await synthesizeMsEdge("hello",  {id:'af-ZA-WillemNeural'})
+    
+    
+    
+   return {
+     getVoices,
+     TTS: synthesizeMsEdge
+   }
+    
+  }
