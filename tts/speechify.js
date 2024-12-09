@@ -1,3 +1,12 @@
+const voices = {
+                "auto": null,
+                "snoop": { speechify: true, "displayName": "Snoop Dogg", "engine": "resemble", "gender": "male", "Locale": "en-US", "localizedDisplayName": {}, "name": "snoop", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-US-snoop-resemble.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-US-snoop-resemble.mp3" },
+                "obama": { speechify: true, "displayName": "Barack Obama", "engine": "speechify", "gender": "male", "Locale": "en-US", "localizedDisplayName": {}, "name": "Presidential", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-US-Presidential-speechify.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-US-Presidential-speechify.mp3" },
+                "GP": { speechify: true, "displayName": "Gwyneth Paltrow", "engine": "resemble", "gender": "female", "Locale": "en-US", "localizedDisplayName": {}, "name": "Gwyneth", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-US-Gwyneth-resemble.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-US-Gwyneth-resemble.mp3" },
+                "narrator": { speechify: true, "displayName": "Narrator", "engine": "resemble", "gender": "male", "Locale": "en-GB", "localizedDisplayName": {}, "name": "narrator", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-GB-narrator-resemble.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-GB-narrator-resemble.mp3" },
+                //voices 
+            }
+
 async function synthesizeSpechify(text,voice ={  "name": "Snoop",
 "engine": "resemble",
 "languageCode": "en"}){
