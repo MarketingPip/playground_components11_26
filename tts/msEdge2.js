@@ -12,14 +12,14 @@ async function getVoices() {
     try {
         const response = await fetch(`https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list?trustedclienttoken=6A5AA1D4EAFF4E9FB37E23D68491D6F4`);
         const json = await response.json();
-        const results = []
+        const results = {}
         for (let voice of json) {
             if (voice.ShortName.startsWith("en-TZ") || voice.ShortName.startsWith("en-NZ")) continue;
 
             voice.id = voice.ShortName;
             voice.ms = true;
             voice.name = voice.ShortName; // .replace(/.*-(\w+)Neural$/, '$1'); 
-            results.push({name:voice.FriendlyName.replace("Online (Natural) ", "").replace("Microsoft", "").trim(), value:voice.id })
+            results[voice.FriendlyName.replace("Online (Natural) ", "").replace("Microsoft", "").trim()] =  value:voice.id 
         }
       return results
     } catch (error) {
