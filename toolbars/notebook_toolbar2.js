@@ -70,6 +70,7 @@ export async function handleToolbarClick(action) {
 
   if(defaultActions[action]){
     // Trigger input event after executing the command to notify any frameworks of changes
+    await actionHandlers[action](textArea, setDropZoneLoading);
   textArea.dispatchEvent(new Event('input'));
   } 
   
