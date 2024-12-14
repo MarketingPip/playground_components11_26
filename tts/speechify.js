@@ -7,7 +7,7 @@ export  const SpechifyVoices = {
                 //voices 
             }
 
-async function synthesizeSpechify(text,voice ={  "name": "Snoop",
+export async function synthesizeSpechify(text,voice ={  "name": "Snoop",
 "engine": "resemble",
 "languageCode": "en"}){
     const apiUrl = "https://audio.api.speechify.com/generateAudioFiles";
