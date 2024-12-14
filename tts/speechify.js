@@ -1,4 +1,4 @@
-const voices = {
+export  const SpechifyVoices = {
                 "auto": null,
                 "snoop": { speechify: true, "displayName": "Snoop Dogg", "engine": "resemble", "gender": "male", "Locale": "en-US", "localizedDisplayName": {}, "name": "snoop", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-US-snoop-resemble.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-US-snoop-resemble.mp3" },
                 "obama": { speechify: true, "displayName": "Barack Obama", "engine": "speechify", "gender": "male", "Locale": "en-US", "localizedDisplayName": {}, "name": "Presidential", "avatarImage": "https://storage.googleapis.com/centralized-voice-list/base/avatars/en-US-Presidential-speechify.webp", "labels": ["beta"], "previewAudio": "https://storage.googleapis.com/centralized-voice-list/base/previews/en-US-Presidential-speechify.mp3" },
