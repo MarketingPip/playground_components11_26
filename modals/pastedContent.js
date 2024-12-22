@@ -197,7 +197,7 @@ textInfo.appendChild(flexContainer);
 
   // Shared function to remove the modal and remove the event listener
 function closeModal() {
-  modal.hide();
+  modalInstance.hide();
   closeButton.removeEventListener('click', closeModal); // Remove listener from closeButton
   cancelButton.removeEventListener('click', closeModal); // Remove listener from cancelButton
 }
