@@ -197,7 +197,10 @@ textInfo.appendChild(flexContainer);
 
   // Shared function to remove the modal and remove the event listener
 function closeModal() {
+
+ if (modalInstance) {
   modalInstance.hide();
+ }
   closeButton.removeEventListener('click', closeModal); // Remove listener from closeButton
   cancelButton.removeEventListener('click', closeModal); // Remove listener from cancelButton
   modal.parentNode.removeChild(modal);
@@ -210,14 +213,19 @@ cancelButton.addEventListener('click', closeModal);
   
   
     // Initialize Flowbite modal for this custom modal
-  const modalInstance = new Modal(modal, {
+  let modalInstance = new Modal(modal, {
     onShow: () => {
       //console.log(`${type} modal is now shown.`);
     },
     onHide: () => {
+      if(modalInstance){
+       modalInstance.destroy()
+       modalInstance = null
+      }
+     closeModal()
       // callback(false);
       //
-       modalInstance.destroy()
+       
     }
   });
 
