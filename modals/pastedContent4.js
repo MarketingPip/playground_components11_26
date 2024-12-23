@@ -200,7 +200,7 @@ function closeModal() {
   modalInstance.hide();
   closeButton.removeEventListener('click', closeModal); // Remove listener from closeButton
   cancelButton.removeEventListener('click', closeModal); // Remove listener from cancelButton
-  modal.remove()
+  modal.parentNode.removeChild(modal);
 }
 
 // Add event listeners to both buttons
