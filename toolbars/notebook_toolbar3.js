@@ -44,39 +44,48 @@ export async function handleToolbarClick(action) {
   const textArea = document.querySelector('.prompt-input');
   if (!textArea) return;
 
-  let dropZoneTitle = document.querySelector('.drop-zone-loading > h1');
-  const dropzoneVal = dropZoneTitle.innerHTML;
+  const dropZoneTitle = document.querySelector('.drop-zone-loading > h1');
+  const originalDropzoneVal = dropZoneTitle?.innerHTML || "Processing...";
 
-  function setDropZoneLoading(show = true) {
-    const dropZoneBg = document.querySelector('.drop-zone-bg'); // Background of drop zone
-    const dropZoneLoading = document.querySelector(".drop-zone-loading");
+  function setDropZoneLoading(show = true, errorMessage = '') {
+    const dropZoneBg = document.querySelector('.drop-zone-bg');
+    const dropZoneLoading = document.querySelector('.drop-zone-loading');
+
+    if (!dropZoneLoading || !dropZoneBg || !dropZoneTitle) return;
+
     if (show) {
-      dropZoneTitle.innerHTML = `Upgrading prompt!<br><span class="spinner"></span>`;
+      dropZoneTitle.innerHTML = errorMessage
+        ? `<span class="text-red-600 font-semibold">${errorMessage}</span>`
+        : `Upgrading prompt!<br><span class="spinner"></span>`;
       dropZoneBg.classList.add('bg-opacity-50', 'bg-gray-200');
       dropZoneLoading.classList.remove('hidden');
     } else {
-      dropZoneTitle.innerHTML = dropzoneVal;
+      dropZoneTitle.innerHTML = originalDropzoneVal;
       dropZoneLoading.classList.add('hidden');
     }
   }
 
-  // Focus the text area to ensure commands work properly
-  textArea.focus();
+  try {
+    textArea.focus();
+    setDropZoneLoading(true);
 
-  // If the action exists in the registry, call it
-  if (actionHandlers[action] && !defaultActions[action]) {
-    await actionHandlers[action](textArea, setDropZoneLoading);
-  } 
-
-  if(defaultActions[action]){
-    // Trigger input event after executing the command to notify any frameworks of changes
-    await actionHandlers[action](textArea, setDropZoneLoading);
-  textArea.dispatchEvent(new Event('input'));
-  } 
-  
- if (!actionHandlers[action] && !defaultActions[action]) {
-   console.warn(`No handler found for action: ${action}`);
- }
-  
-  
+    if (actionHandlers[action] && !defaultActions[action]) {
+      await actionHandlers[action](textArea, setDropZoneLoading);
+    } else if (defaultActions[action]) {
+      await actionHandlers[action](textArea, setDropZoneLoading);
+      textArea.dispatchEvent(new Event('input'));
+    } else {
+      console.warn(`No handler found for action: ${action}`);
+    }
+  } catch (error) {
+    console.error(`Error while handling toolbar action "${action}":`, error);
+    setDropZoneLoading(true, '⚠️ Error upgrading prompt. Please try again.');
+  } finally {
+    // If an error occurred, keep the message visible briefly, then hide
+    if (dropZoneTitle?.innerText.includes('Error upgrading')) {
+      setTimeout(() => setDropZoneLoading(false), 3000);
+    } else {
+      setDropZoneLoading(false);
+    }
+  }
 }
