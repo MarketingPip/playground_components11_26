@@ -32,7 +32,7 @@ class YouTubeTranscriptFetcher {
       const transcriptUrl = this.extractTranscriptUrl(playerResponse);
 
       // Fetch the transcript XML
-      const transcriptResponse = await fetch(transcriptUrl);
+      const transcriptResponse = await fetch(transcriptUrl.startsWith('https://www.youtube.com') ? transcriptUrl : `https://www.youtube.com/${transcriptUrl}`);
       const transcriptXml = await transcriptResponse.text();
 
       // Parse the XML transcript
